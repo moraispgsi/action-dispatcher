@@ -44,7 +44,7 @@ app.post('/execute', function (req, res) {
 });
 
 //Start the server
-let server = app.listen(2000, '127.0.0.1', function () {
+let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
     let host = server.address().address;
     let port = server.address().port;
     console.log("listening at http://%s:%s", host, port)

@@ -1,0 +1,21 @@
+jobs:
+  include:
+    - stage: unit tests
+      script: ""
+    - stage: unit tests
+      script: ""
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: action-dispatcher
+        api_key: 246542ac-8051-4867-aa1b-89abe4fb5dc9
+#    - stage: test staging
+#      script: 'curl http://action-dispatcher-staging.herokuapp.com'
+    - stage: deploy to production
+      script: skip
+      deploy:
+        <<: *heroku
+        app: action-dispatcher
+    - stage: test production
+      script: 'curl http://action-dispatcher.herokuapp.com'
