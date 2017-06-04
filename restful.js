@@ -1,10 +1,11 @@
 let request = require("request");
 
 /**
+ * Simple interface to do a http POST request.
  *
- * @param path
- * @param data
- * @param callback
+ * @param path Path of the resource
+ * @param data Data to send in JSON format
+ * @param callback Function to be executed after the request is successful
  */
 exports.post = function(path, data, callback){
     let options = {
