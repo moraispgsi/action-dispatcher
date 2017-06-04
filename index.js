@@ -36,12 +36,18 @@ app.use(express.static('public'));
 
 app.post('/execute', function (req, res) {
     try {
-        dispatcher.dispatch(req.body.namespace, req.body.action, req.body.arguments);
-        res.sendStatus(200);
+        dispatcher.dispatch(req.body.namespace, req.body.action, req.body.arguments, res);
     } catch(err) {
-        res.json({error: err});
+        let status = err.status || 500;
+        let message = "Failed to dispatch action!";
+        res.status(status).json({
+            status: status,
+            message: message,
+            error: err
+        });
     }
 });
+
 
 //Start the server
 let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
