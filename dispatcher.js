@@ -20,18 +20,21 @@ module.exports = function(){
     let ddmHandler = function(action, arguments, res) {
 
         switch (action) {
-            case "getDataValues":
+            case DDM_SERVICES.actionsSupp.GET_DATA_VALUES:
                 DDM_SERVICES.getDataValues(arguments, res);
                 break;
 
-            case "changeVisibility":
+            case DDM_SERVICES.actionsSupp.CHANGE_VISIBILITY:
                 DDM_SERVICES.changeVisibility(arguments, res);
                 break;
 
-            case "changeVisualization":
+            case DDM_SERVICES.actionsSupp.CHANGE_VISUALIZATION:
                 DDM_SERVICES.changeVisualization(arguments, res);
                 break;
 
+            case DDM_SERVICES.actionsSupp.ACTIONS:
+                DDM_SERVICES.actions(res);
+                break;
             default:
                 res.status(404).send("Invalid service request");
         }
