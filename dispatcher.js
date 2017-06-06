@@ -3,8 +3,8 @@
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
 let namespaces = require("./namespaces")["namespaces"];
+let debugGeneral = require("debug")("general");
 let debug = require("debug")("ddm");
-
 
 module.exports = function(){
     let stripNsPrefixRe = /^(?:{(?:[^}]*)})?(.*)$/;
@@ -41,7 +41,10 @@ module.exports = function(){
     };
 
     let dispatch = function(namespace, action, arguments, res) {
-        debug("DISPATCHING..");
+        debugGeneral("DISPATCHING..");
+        debugGeneral("Namespace", namespace);
+        debugGeneral("Action", action);
+        debugGeneral("Arguments", arguments);
         switch(namespace.toLowerCase()){
             case namespaces.DDM_SERVER.toLowerCase():
                 ddmHandler(action, arguments, res);
