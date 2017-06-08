@@ -234,20 +234,19 @@ function readDeadline(arguments, res){
     try {
         RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
             if (body && body.status) {
-                res.status(body.status).send(body);
+                res.status(200).send(body);
             } else {
                 let status = body ? body.status : 400;
                 let message = "DDM didn't provided a valid response!";
-                res.status(status).send({
+                res.status(400).send({
                     status: status,
                     message: message
                 });
             }
         });
     }catch(err){
-        let status = 400;
         let message = "Request wasn't dispatched to DDM because there are arguments invalid";
-        res.status(status).send({
+        res.status(400).send({
             status: status,
             message: message,
             error: err.message
