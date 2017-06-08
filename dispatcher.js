@@ -3,8 +3,8 @@
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
 let namespaces = require("./namespaces")["namespaces"];
-let debugGeneral = require("debug")("general");
-let debug = require("debug")("ddm");
+let debug = require("debug")("dispatcher");
+
 
 module.exports = function(){
     let stripNsPrefixRe = /^(?:{(?:[^}]*)})?(.*)$/;
@@ -18,7 +18,6 @@ module.exports = function(){
      * @param res Object to send back the http response
      */
     let ddmHandler = function(action, arguments, res) {
-
         switch (action) {
             case DDM_SERVICES.actionsSupp.GET_DATA_VALUES:
                 DDM_SERVICES.getDataValues(arguments, res);
@@ -35,6 +34,26 @@ module.exports = function(){
             case DDM_SERVICES.actionsSupp.ACTIONS:
                 DDM_SERVICES.actions(res);
                 break;
+
+
+            case DDM_SERVICES.actionsSupp.CREATE_DEADLINE:
+                DDM_SERVICES.createDeadline(arguments, res);
+                break;
+
+            case DDM_SERVICES.actionsSupp.READ_DEADLINE:
+                DDM_SERVICES.readDeadline(arguments, res);
+                break;
+
+            case DDM_SERVICES.actionsSupp.UPDATE_DEADLINE:  //1
+                DDM_SERVICES.updateDeadline(arguments, res);
+                break;
+
+            case DDM_SERVICES.actionsSupp.DELETE_DEADLINE: // 2
+                DDM_SERVICES.deleteDeadline(arguments, res);
+                break;
+
+
+
             default:
                 res.status(404).send("Invalid service request");
         }

@@ -1,11 +1,15 @@
 let RESTFUL = require("./../restful");
 let namespaces = require("./../namespaces").namespaces;
-
+let debug = require("debug")("ddm");
 let actionsSupported = {
     ACTIONS: "actions",
     GET_DATA_VALUES: "getDataValues",
     CHANGE_VISIBILITY: "changeVisibility",
-    CHANGE_VISUALIZATION: "changeVisualization"
+    CHANGE_VISUALIZATION: "changeVisualization",
+    CREATE_DEADLINE: "createDeadline",
+    READ_DEADLINE: "readDeadline",
+    UPDATE_DEADLINE: "updateDeadline",
+    DELETE_DEADLINE: "deleteDeadline",
 };
 
 /**
@@ -168,6 +172,118 @@ function changeVisualization(arguments, res) {
 }
 
 
+function createDeadline(arguments, res){
+    let path = "/API/simulation/deadline/create";
+
+    try {
+        RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
+            if (body && body.status) {
+                res.status(200).send(body);
+            } else {
+                let status = 400;
+                let message = "DDM didn't provided a valid response!";
+                res.status(status).send({
+                    status: status,
+                    message: message
+                });
+            }
+        });
+    }catch(err){
+        let status = 400;
+        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
+        res.status(status).send({
+            status: status,
+            message: message,
+            error: err.message
+        });
+    }
+}
+
+function updateDeadline(arguments, res){
+    debug("Dispatch update deadline | arguments:", arguments);
+    let path = "/API/simulation/deadline/update";
+
+    try {
+        if (arguments && arguments.id) {
+            RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
+                if (body) {
+                    res.status(200).send(body);
+                } else {
+                    let message = "DDM didn't provided a valid response!";
+                    res.status(400).send({
+                        message: message
+                    });
+                }
+            });
+        } else {
+            throw new Error("No valid arguments");
+        }
+    }catch(err){
+        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
+        res.status(400).send({
+            status: status,
+            message: message,
+            error: err.message
+        });
+    }
+}
+
+function readDeadline(arguments, res){
+    let path = "/API/simulation/deadline/read";
+
+    try {
+        RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
+            if (body && body.status) {
+                res.status(body.status).send(body);
+            } else {
+                let status = body ? body.status : 400;
+                let message = "DDM didn't provided a valid response!";
+                res.status(status).send({
+                    status: status,
+                    message: message
+                });
+            }
+        });
+    }catch(err){
+        let status = 400;
+        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
+        res.status(status).send({
+            status: status,
+            message: message,
+            error: err.message
+        });
+    }
+}
+
+function deleteDeadline(arguments, res){
+    debug("Dispatch update deadline | arguments:", arguments);
+    let path = "/API/simulation/deadline/delete";
+
+    try {
+        if (arguments && arguments.id) {
+            RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
+                if (body) {
+                    res.status(200).send(body);
+                } else {
+                    let message = "DDM didn't provided a valid response!";
+                    res.status(400).send({
+                        message: message
+                    });
+                }
+            });
+        } else {
+            throw new Error("No valid arguments");
+        }
+    }catch(err){
+        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
+        res.status(400).send({
+            message: message,
+            error: err.message
+        });
+    }
+}
+
+
 /**
  * Exports all the supported interfaces to deal with actions
  * and its arguments.
@@ -183,5 +299,10 @@ module.exports = {
     changeVisibility: changeVisibility,
     changeVisualization: changeVisualization,
     actions: actions,
+    createDeadline: createDeadline,
+    updateDeadline: updateDeadline,
+    readDeadline: readDeadline,
+    deleteDeadline: deleteDeadline,
+
     actionsSupp: actionsSupported
 };

@@ -15,7 +15,6 @@ exports.post = function(path, data, callback){
     };
     request.post(options, function (err, response, body){
         if(callback &&  typeof callback == "function"){
-            console.log(err);
             callback(response, body);
         }else{
             throw new Error("Callback is required to handle response");
