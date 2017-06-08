@@ -60,7 +60,10 @@ module.exports = function(){
     };
 
     let dispatch = function(namespace, action, arguments, res) {
-        debug("DISPATCHING..");
+        debugGeneral("DISPATCHING..");
+        debugGeneral("Namespace", namespace);
+        debugGeneral("Action", action);
+        debugGeneral("Arguments", arguments);
         switch(namespace.toLowerCase()){
             case "https://insticc.org/ddm":
                 ddmHandler(action, arguments, res);
