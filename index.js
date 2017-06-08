@@ -38,6 +38,7 @@ app.post('/execute', function (req, res) {
     try {
         dispatcher.dispatch(req.body.namespace, req.body.action, req.body.arguments, res);
     } catch(err) {
+        console.log(err.message);
         let status = err.status || 500;
         let message = "Failed to dispatch action!";
         res.status(status).json({

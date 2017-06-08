@@ -3,7 +3,7 @@
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
 let namespaces = require("./namespaces")["namespaces"];
-let debug = require("debug")("dispatcher");
+let debugGeneral = require("debug")("dispatcher");
 
 
 module.exports = function(){
