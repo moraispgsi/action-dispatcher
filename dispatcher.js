@@ -62,7 +62,7 @@ module.exports = function(){
     let dispatch = function(namespace, action, arguments, res) {
         debug("DISPATCHING..");
         switch(namespace.toLowerCase()){
-            case namespaces.DDM_SERVER.toLowerCase():
+            case "https://insticc.org/ddm":
                 ddmHandler(action, arguments, res);
         }
     };
