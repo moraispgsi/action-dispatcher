@@ -29,7 +29,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let dispatcher = require('./dispatcher')();
-
+let debug = require("debug")("dispatcher");
 app.use(bodyParser.json());                       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // to support URL-encoded bodies
 app.use(express.static('public'));
@@ -54,5 +54,5 @@ app.post('/execute', function (req, res) {
 let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
     let host = server.address().address;
     let port = server.address().port;
-    console.log("listening at http://%s:%s", host, port)
+    debug("listening at http://%s:%s", host, port);
 });

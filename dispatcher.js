@@ -2,6 +2,7 @@
  * Created by Ricardo Morais on 26/05/2017.
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
+let WEBFLOW_SERVICES = require("./webflow/webflowServices");
 let namespaces = require("./namespaces")["namespaces"];
 let debugGeneral = require("debug")("dispatcher");
 
@@ -35,7 +36,6 @@ module.exports = function(){
                 DDM_SERVICES.actions(res);
                 break;
 
-
             case DDM_SERVICES.actionsSupp.CREATE_DEADLINE:
                 DDM_SERVICES.createDeadline(arguments, res);
                 break;
@@ -44,18 +44,40 @@ module.exports = function(){
                 DDM_SERVICES.readDeadline(arguments, res);
                 break;
 
-            case DDM_SERVICES.actionsSupp.UPDATE_DEADLINE:  //1
+            case DDM_SERVICES.actionsSupp.UPDATE_DEADLINE:
                 DDM_SERVICES.updateDeadline(arguments, res);
                 break;
 
-            case DDM_SERVICES.actionsSupp.DELETE_DEADLINE: // 2
+            case DDM_SERVICES.actionsSupp.DELETE_DEADLINE:
                 DDM_SERVICES.deleteDeadline(arguments, res);
                 break;
 
-
-
             default:
                 res.status(404).send("Invalid service request");
+        }
+    };
+
+    let webflowHandler = function(action, arguments, res){
+        switch (action) {
+            case WEBFLOW_SERVICES.actionsSupp.INIT:
+                WEBFLOW_SERVICES.init(arguments, res);
+                break;
+
+            case WEBFLOW_SERVICES.actionsSupp.CREATE_ITEM:
+                WEBFLOW_SERVICES.createItem(arguments, res);
+                break;
+
+            case WEBFLOW_SERVICES.actionsSupp.UPDATE_ITEM:
+                WEBFLOW_SERVICES.updateItem(arguments, res);
+                break;
+
+            case WEBFLOW_SERVICES.actionsSupp.DELETE_ITEM:
+                WEBFLOW_SERVICES.deleteItem(arguments, res);
+                break;
+
+            case WEBFLOW_SERVICES.actionsSupp.GET_ITEM:
+                WEBFLOW_SERVICES.getItem(arguments, res);
+                break;
         }
     };
 
@@ -67,6 +89,11 @@ module.exports = function(){
         switch(namespace.toLowerCase()){
             case "https://insticc.org/ddm":
                 ddmHandler(action, arguments, res);
+                break;
+
+            case "webflow":
+                webflowHandler(action, arguments, res);
+                break;
         }
     };
 

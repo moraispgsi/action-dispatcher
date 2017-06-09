@@ -1,6 +1,9 @@
+let request = require("request-promise");
+let debug = require("debug")("ddm");
+
 let RESTFUL = require("./../restful");
 let namespaces = require("./../namespaces").namespaces;
-let debug = require("debug")("ddm");
+
 let actionsSupported = {
     ACTIONS: "actions",
     GET_DATA_VALUES: "getDataValues",
@@ -11,6 +14,7 @@ let actionsSupported = {
     UPDATE_DEADLINE: "updateDeadline",
     DELETE_DEADLINE: "deleteDeadline",
 };
+
 
 /**
  * Responsible to inform what are the supported actions of the Dynamic Domain Model Server
@@ -47,11 +51,8 @@ function actions(res){
                          "represents the entities."
         }
     ];
-    let status = 200;
-    res.status(status).send({
-        status: status,
-        message: actionsSupported
-    });
+    debug("Action 'actions' executed with success");
+    res.status(200).send(actionsSupported);
 }
 
 /**
@@ -172,62 +173,45 @@ function changeVisualization(arguments, res) {
 }
 
 
+//TODO: To remove because it will be supported from webflow point of view
 function createDeadline(arguments, res){
-    let path = "/API/simulation/deadline/create";
+    let options = {
+        method: "POST",
+        uri: process.env.DDM_SERVER + "/API/simulation/deadline/create",
+        body: arguments,
+        json: true
+    };
+    debug("Action \"createDeadline\" is going to sent a request to: %s", options.uri);
 
-    try {
-        RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
-            if (body && body.status) {
-                res.status(200).send(body);
-            } else {
-                let status = 400;
-                let message = "DDM didn't provided a valid response!";
-                res.status(status).send({
-                    status: status,
-                    message: message
-                });
-            }
-        });
-    }catch(err){
-        let status = 400;
-        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
-        res.status(status).send({
-            status: status,
-            message: message,
-            error: err.message
-        });
-    }
+    request(options).then(function(body){   // Post succeeded
+        // no validation is performed on the body
+        debug("Request received with success");
+        res.status(200).send(body);
+
+    }).catch(function(error){               // Post failed
+        debug(error.message);
+        res.status(500).send({error: error.message});
+    });
 }
-
 function updateDeadline(arguments, res){
-    debug("Dispatch update deadline | arguments:", arguments);
-    let path = "/API/simulation/deadline/update";
+    let options = {
+        method: "POST",
+        uri: process.env.DDM_SERVER + "/API/simulation/deadline/update",
+        body: arguments,
+        json: true
+    };
+    debug("Action \"updateDeadline\" is going to sent a request to: %s", options.uri);
 
-    try {
-        if (arguments && arguments.id) {
-            RESTFUL.post(namespaces.DDM_SERVER + path, arguments, function (response, body) {
-                if (body) {
-                    res.status(200).send(body);
-                } else {
-                    let message = "DDM didn't provided a valid response!";
-                    res.status(400).send({
-                        message: message
-                    });
-                }
-            });
-        } else {
-            throw new Error("No valid arguments");
-        }
-    }catch(err){
-        let message = "Request wasn't dispatched to DDM because there are arguments invalid";
-        res.status(400).send({
-            status: status,
-            message: message,
-            error: err.message
-        });
-    }
+    request(options).then(function(body){   // Post succeeded
+        // no validation is performed on the body
+        debug("Request received with success");
+        res.status(200).send(body);
+
+    }).catch(function(error){               // Post failed
+        debug(error.message);
+        res.status(500).send({error: error.message});
+    });
 }
-
 function readDeadline(arguments, res){
     let path = "/API/simulation/deadline/read";
 
@@ -253,9 +237,8 @@ function readDeadline(arguments, res){
         });
     }
 }
-
 function deleteDeadline(arguments, res){
-    debug("Dispatch update deadline | arguments:", arguments);
+    debug("Dispatch create deadline | arguments:", arguments);
     let path = "/API/simulation/deadline/delete";
 
     try {
