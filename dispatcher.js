@@ -3,11 +3,12 @@
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
 let WEBFLOW_SERVICES = require("./webflow/webflowServices");
+let CMS_SERVICES = require("./CMS/CMSServices");
 let namespaces = require("./namespaces")["namespaces"];
 let debugGeneral = require("debug")("dispatcher");
 
 
-module.exports = function(){
+module.exports = function () {
     let stripNsPrefixRe = /^(?:{(?:[^}]*)})?(.*)$/;
 
     /**
@@ -18,7 +19,7 @@ module.exports = function(){
      * @param arguments Arguments of the action
      * @param res Object to send back the http response
      */
-    let ddmHandler = function(action, arguments, res) {
+    let ddmHandler = function (action, arguments, res) {
         switch (action) {
             case DDM_SERVICES.actionsSupp.GET_DATA_VALUES:
                 DDM_SERVICES.getDataValues(arguments, res);
@@ -57,7 +58,7 @@ module.exports = function(){
         }
     };
 
-    let webflowHandler = function(action, arguments, res){
+    let webflowHandler = function (action, arguments, res) {
         switch (action) {
             case WEBFLOW_SERVICES.actionsSupp.INIT:
                 WEBFLOW_SERVICES.init(arguments, res);
@@ -81,18 +82,35 @@ module.exports = function(){
         }
     };
 
-    let dispatch = function(namespace, action, arguments, res) {
+    let CMSHandler = function (action, arguments, res) {
+        switch (action) {
+            case CMS_SERVICES.actionsSupp.SET_VISIBILITY:
+                CMS_SERVICES.changeVisibility(arguments, res);
+                break;
+
+            case CMS_SERVICES.actionsSupp.SET_VIEW:
+                CMS_SERVICES.changeView(arguments, res);
+                break;
+
+        }
+    };
+
+    let dispatch = function (namespace, action, arguments, res) {
         debugGeneral("DISPATCHING..");
         debugGeneral("Namespace", namespace);
         debugGeneral("Action", action);
         debugGeneral("Arguments", arguments);
-        switch(namespace.toLowerCase()){
+        switch (namespace.toLowerCase()) {
             case "https://insticc.org/ddm":
                 ddmHandler(action, arguments, res);
                 break;
 
             case "webflow":
                 webflowHandler(action, arguments, res);
+                break;
+
+            case "https://insticc.org/cms":
+                CMSHandler(action, arguments, res);
                 break;
         }
     };
