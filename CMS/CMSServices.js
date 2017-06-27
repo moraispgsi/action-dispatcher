@@ -47,7 +47,7 @@ function actions(res) {
 function changeVisibility(arguments, res) {
     let path = "/API/setVisible";
     try {
-        if (arguments.name && arguments.id && arguments.visibility) {
+        if (arguments.name && arguments.id) {
             RESTFUL.post(namespaces.CMS_SERVER + path, arguments, function (response, body) {
                 if (body && body.status) {
                     res.status(body.status).send(body);
