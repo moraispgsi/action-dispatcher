@@ -1,13 +1,55 @@
 let request = require("request-promise");
-let debug = require("debug")("ddm");
+let debug = require("debug")("cms");
 
 let RESTFUL = require("./../restful");
 let namespaces = require("./../namespaces").namespaces;
 
+let services = [
+    {
+        name: "changeVisibility",
+        arguments: {
+            name: {
+                type: 'string',
+                description: 'The name of the website',
+            },
+            id: {
+                type: 'string',
+                description: 'The id of the component to change the visibility',
+            },
+            visibility: {
+                type: 'boolean',
+                description: 'The boolean value for the component visibility'
+            }
+        },
+        description: "This action is used to change the visibility of a component in a website."
+    },
+    {
+        name: "changeView",
+        arguments: {
+            name: {
+                type: 'string',
+                description: 'The name of the website',
+            },
+            id: {
+                type: 'string',
+                description: 'The id of the component to change the visibility',
+            },
+            view: {
+                type: 'string',
+                description: 'The view identifier'
+            }
+        },
+        description: "This action is used to change the view of a component in a website."
+    },
+];
+
 let actionsSupported = {
+    ACTIONS: "actions",
     SET_VISIBILITY: "changeVisibility",
     SET_VIEW: "changeView",
 };
+
+
 
 
 /**
@@ -17,20 +59,7 @@ let actionsSupported = {
  * @param {Object} res Object to send back the http response
  */
 function actions(res) {
-    let actionsSupported = [
-        {
-            name: "changeVisibility",
-            arguments: ["name", "id", "visibility"],
-            description: "This action receives the name of the website, the id of the component and changes it to" +
-            " true/false(visible/ not visible) based on the value of visibility"
-        },
-        {
-            name: "changeView",
-            arguments: ["name", "id", "view"],
-            description: "This action receives the name of the website, the id of the component and changes it to" +
-            " the received view"
-        },
-    ];
+    let actionsSupported = services;
     debug("Action 'actions' executed with success");
     res.status(200).send(actionsSupported);
 }
@@ -104,7 +133,7 @@ function changeView(arguments, res) {
         }
     } catch (err) {
         let status = 400;
-        let message = "Request wasn't dispatched to CMS because there are arguments invalid";
+        let message = "Request wasn't dispatched to the CMS because there are invalid arguments";
         res.status(status).send({
             status: status,
             message: message,
@@ -117,5 +146,6 @@ module.exports = {
     changeView: changeView,
     changeVisibility: changeVisibility,
     actions: actions,
-    actionsSupp: actionsSupported
+    actionsSupp: actionsSupported,
+    services: services
 };

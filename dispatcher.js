@@ -2,11 +2,12 @@
  * Created by Ricardo Morais on 26/05/2017.
  */
 let DDM_SERVICES = require("./ddm/ddmServices");
-let WEBFLOW_SERVICES = require("./webflow/webflowServices");
-let CMS_SERVICES = require("./CMS/CMSServices");
+let CMS_SERVICES = require("./cms/cmsServices");
 let namespaces = require("./namespaces")["namespaces"];
 let debugGeneral = require("debug")("dispatcher");
 
+const ddmURI = 'https://insticc.org/ddm';
+const cmsURI = 'https://insticc.org/cms';
 
 module.exports = function () {
     let stripNsPrefixRe = /^(?:{(?:[^}]*)})?(.*)$/;
@@ -58,31 +59,7 @@ module.exports = function () {
         }
     };
 
-    let webflowHandler = function (action, arguments, res) {
-        switch (action) {
-            case WEBFLOW_SERVICES.actionsSupp.INIT:
-                WEBFLOW_SERVICES.init(arguments, res);
-                break;
-
-            case WEBFLOW_SERVICES.actionsSupp.CREATE_ITEM:
-                WEBFLOW_SERVICES.createItem(arguments, res);
-                break;
-
-            case WEBFLOW_SERVICES.actionsSupp.UPDATE_ITEM:
-                WEBFLOW_SERVICES.updateItem(arguments, res);
-                break;
-
-            case WEBFLOW_SERVICES.actionsSupp.DELETE_ITEM:
-                WEBFLOW_SERVICES.deleteItem(arguments, res);
-                break;
-
-            case WEBFLOW_SERVICES.actionsSupp.GET_ITEM:
-                WEBFLOW_SERVICES.getItem(arguments, res);
-                break;
-        }
-    };
-
-    let CMSHandler = function (action, arguments, res) {
+    let cmsHandler = function (action, arguments, res) {
         switch (action) {
             case CMS_SERVICES.actionsSupp.SET_VISIBILITY:
                 CMS_SERVICES.changeVisibility(arguments, res);
@@ -91,7 +68,6 @@ module.exports = function () {
             case CMS_SERVICES.actionsSupp.SET_VIEW:
                 CMS_SERVICES.changeView(arguments, res);
                 break;
-
         }
     };
 
@@ -101,21 +77,25 @@ module.exports = function () {
         debugGeneral("Action", action);
         debugGeneral("Arguments", arguments);
         switch (namespace.toLowerCase()) {
-            case "https://insticc.org/ddm":
+            case ddmURI:
                 ddmHandler(action, arguments, res);
                 break;
 
-            case "webflow":
-                webflowHandler(action, arguments, res);
-                break;
-
-            case "https://insticc.org/cms":
-                CMSHandler(action, arguments, res);
+            case cmsURI:
+                cmsHandler(action, arguments, res);
                 break;
         }
     };
 
+    let getServices = function () {
+        let services = {};
+        services[ddmURI.toLowerCase()] = DDM_SERVICES.services;
+        services[cmsURI.toLowerCase()] = CMS_SERVICES.services;
+        return services;
+    };
+
     return {
-        dispatch: dispatch
+        dispatch: dispatch,
+        getServices: getServices
     }
 };

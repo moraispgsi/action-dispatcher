@@ -49,6 +49,41 @@ app.post('/execute', function (req, res) {
     }
 });
 
+app.get('/services', function (req, res) {
+    try {
+        let services = dispatcher.getServices();
+        res.json(services);
+    } catch (err) {
+        console.log(err.message);
+        let status = err.status || 500;
+        let message = "Failed!";
+        res.status(status).json({
+            status: status,
+            message: message,
+            error: err
+        });
+    }
+});
+
+app.get('/subservices', function (req, res) {
+    try {
+        let ns = req.query.namespace;
+        let services = dispatcher.getServices();
+        if(services[ns.toLowerCase()]){
+            res.json(services[ns]);
+        }
+    } catch (err) {
+        console.log(err.message);
+        let status = err.status || 500;
+        let message = "Could not find the namespace!";
+        res.status(status).json({
+            status: status,
+            message: message,
+            error: err
+        });
+    }
+});
+
 
 //Start the server
 let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
