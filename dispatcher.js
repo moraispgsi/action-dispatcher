@@ -72,10 +72,12 @@ module.exports = function () {
     };
 
     let dispatch = function (namespace, action, arguments, res) {
+
         debugGeneral("DISPATCHING..");
         debugGeneral("Namespace", namespace);
         debugGeneral("Action", action);
         debugGeneral("Arguments", arguments);
+
         switch (namespace.toLowerCase()) {
             case ddmURI:
                 ddmHandler(action, arguments, res);
@@ -94,8 +96,16 @@ module.exports = function () {
         return services;
     };
 
+    let getNamespaces = function () {
+        return [
+            ddmURI.toLowerCase(),
+            cmsURI.toLowerCase()
+        ];
+    };
+
     return {
         dispatch: dispatch,
-        getServices: getServices
+        getServices: getServices,
+        getNamespaces: getNamespaces
     }
 };

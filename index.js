@@ -49,6 +49,24 @@ app.post('/execute', function (req, res) {
     }
 });
 
+app.get('/namespaces', function (req, res) {
+    try {
+        let namespaces = dispatcher.getNamespaces();
+        res.json({
+            namespaces: namespaces
+        });
+    } catch (err) {
+        console.log(err.message);
+        let status = err.status || 500;
+        let message = "Failed!";
+        res.status(status).json({
+            status: status,
+            message: message,
+            error: err
+        });
+    }
+});
+
 app.get('/services', function (req, res) {
     try {
         let services = dispatcher.getServices();
@@ -83,7 +101,6 @@ app.get('/subservices', function (req, res) {
         });
     }
 });
-
 
 //Start the server
 let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
