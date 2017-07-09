@@ -34,7 +34,10 @@ app.use(bodyParser.json());                       // to support JSON-encoded bod
 app.use(bodyParser.urlencoded({extended: true})); // to support URL-encoded bodies
 app.use(express.static('public'));
 
-app.post('/execute', function (req, res) {
+// initialize the oauth2
+require('./oauth2.js')(app);
+
+app.post('/execute', app.oauth.authorise(), function (req, res) {
     try {
         dispatcher.dispatch(req.body.namespace, req.body.action, req.body.arguments, res);
     } catch(err) {
@@ -49,7 +52,7 @@ app.post('/execute', function (req, res) {
     }
 });
 
-app.get('/namespaces', function (req, res) {
+app.get('/namespaces', app.oauth.authorise(), function (req, res) {
     try {
         let namespaces = dispatcher.getNamespaces();
         res.json({
@@ -67,7 +70,7 @@ app.get('/namespaces', function (req, res) {
     }
 });
 
-app.get('/services', function (req, res) {
+app.get('/services', app.oauth.authorise(), function (req, res) {
     try {
         let services = dispatcher.getServices();
         res.json(services);
@@ -83,7 +86,7 @@ app.get('/services', function (req, res) {
     }
 });
 
-app.get('/subservices', function (req, res) {
+app.get('/subservices', app.oauth.authorise(), function (req, res) {
     try {
         let ns = req.query.namespace;
         let services = dispatcher.getServices();
@@ -103,7 +106,7 @@ app.get('/subservices', function (req, res) {
 });
 
 //Start the server
-let server = app.listen(process.env.PORT || 8080, '0.0.0.0', function () {
+let server = app.listen(process.env.PORT || 8082, '0.0.0.0', function () {
     let host = server.address().address;
     let port = server.address().port;
     debug("listening at http://%s:%s", host, port);
