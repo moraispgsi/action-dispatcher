@@ -9,7 +9,7 @@
     "dev": "better-npm-run dev",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha test/**/*.js",
+    "test": "NODE_ENV=test mocha test/**/*.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc",
     "deploy": "better-npm-run deploy"
   },
@@ -54,7 +54,9 @@
     "request-promise": "^4.2.1",
     "sequelize": "^3.19.2",
     "sqlite3": "^3.1.8",
-    "winston": "^2.1.1"
+    "winston": "^2.1.1",
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0"
   },
   "devDependencies": {
     "apidoc": "^0.15.1",
