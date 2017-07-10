@@ -1,3 +1,5 @@
+before_install:
+  - npm install -g mocha
 jobs:
   include:
     - stage: unit tests
