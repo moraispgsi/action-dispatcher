@@ -9,7 +9,7 @@
     "dev": "better-npm-run dev",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_ENV=test mocha test/**/*.js",
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha test/**/*.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc",
     "deploy": "better-npm-run deploy"
   },
