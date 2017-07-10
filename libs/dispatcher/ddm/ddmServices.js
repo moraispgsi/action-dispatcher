@@ -1,8 +1,8 @@
 let request = require("request-promise");
 let debug = require("debug")("ddm");
 
-let RESTFUL = require("./../restful");
-let namespaces = require("./../namespaces").namespaces;
+let RESTFUL = require("../restful");
+let namespaces = require("../namespaces").namespaces;
 
 let services = [];
 

@@ -1,8 +1,8 @@
 let request = require("request-promise");
 let debug = require("debug")("cms");
 
-let RESTFUL = require("./../restful");
-let namespaces = require("./../namespaces").namespaces;
+let RESTFUL = require("../restful");
+let namespaces = require("../namespaces").namespaces;
 
 let services = [
     {
@@ -54,7 +54,7 @@ let actionsSupported = {
 
 /**
  * Responsible to inform what are the supported actions of the Dynamic Domain Model Server
- * and its arguments, followed with a brief description.
+ * and its args, followed with a brief description.
  *
  * @param {Object} res Object to send back the http response
  */
@@ -70,14 +70,14 @@ function actions(res) {
  * After the dynamic domain model server responds the dispatch
  * server sends the http result to whom requested.
  *
- * @param {Object} arguments Arguments of the action
+ * @param {Object} args Arguments of the action
  * @param {Object} res Object to send back the http response
  */
-function changeVisibility(arguments, res) {
+function changeVisibility(args, res) {
     let path = "/API/setVisible";
     try {
-        if (arguments.name && arguments.id) {
-            RESTFUL.post(namespaces.CMS_SERVER + path, arguments, function (response, body) {
+        if (args.name && args.id) {
+            RESTFUL.post(namespaces.CMS_SERVER + path, args, function (response, body) {
                 if (body && body.status) {
                     res.status(body.status).send(body);
                 } else {
@@ -90,11 +90,11 @@ function changeVisibility(arguments, res) {
                 }
             });
         } else {
-            throw new Error("No valid arguments");
+            throw new Error("No valid args");
         }
     } catch (err) {
         let status = 400;
-        let message = "Request wasn't dispatched to CMS because there are arguments invalid";
+        let message = "Request wasn't dispatched to CMS because there are args invalid";
         res.status(status).send({
             status: status,
             message: message,
@@ -109,14 +109,14 @@ function changeVisibility(arguments, res) {
  * After the dynamic domain model server responds the dispatch
  * server sends the http result to whom requested.
  *
- * @param {Object} arguments Arguments of the action
+ * @param {Object} args Arguments of the action
  * @param {Object} res Object to send back the http response
  */
-function changeView(arguments, res) {
+function changeView(args, res) {
     let path = "/API/setView";
     try {
-        if (arguments.id && arguments.name && arguments.view) {
-            RESTFUL.post(namespaces.CMS_SERVER + path, arguments, function (response, body) {
+        if (args.id && args.name && args.view) {
+            RESTFUL.post(namespaces.CMS_SERVER + path, args, function (response, body) {
                 if (body && body.status) {
                     res.status(body.status).send(body);
                 } else {
