@@ -59,6 +59,8 @@ module.exports = app => {
             let services = app.dispatcher.getServices();
             if (services[ns.toLowerCase()]) {
                 res.json(services[ns]);
+            } else {
+                res.sendStatus(404);
             }
         } catch (err) {
             console.log(err.message);

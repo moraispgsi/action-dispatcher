@@ -1,0 +1,19 @@
+
+// manifest
+let namespace = '<%= namespace %>',
+    abbreviation = '<%= abbr %>',
+    url = process.env.<%= abbr.toUpperCase() %>_SERVER;
+
+let debug = require('debug')(abbreviation);
+let utils = require("../../utils");
+
+let services = {};
+
+let router = {};
+
+module.exports =  {
+    namespace,
+    abbreviation,
+    services,
+    router
+};
