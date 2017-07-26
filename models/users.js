@@ -30,7 +30,7 @@ module.exports = (sequelize, DataType) => {
       },
     },
   }, {
-    freezeTableName: true,
+    timestamps: false,
     hooks: {
       beforeCreate: user => {
         const salt = bcrypt.genSaltSync();
@@ -39,7 +39,6 @@ module.exports = (sequelize, DataType) => {
     },
     classMethods: {
       associate: models => {
-        Users.hasMany(models.Tasks);
       },
       isPassword: (encodedPassword, password) => {
         return bcrypt.compareSync(password, encodedPassword);

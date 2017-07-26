@@ -1,0 +1,35 @@
+{
+  "machines": {
+    "machine1": {
+      "route": "machines/machine1",
+      "versions": {
+        "version1": {
+          "route": "machines/machine1/versions/version1",
+          "instances": {
+            "instance1": {
+              "route": "machines/machine1/versions/version1/instances/instance1",
+              "snapshots": {
+                "snapshot1": {
+                  "route": "machines/machine1/versions/version1/instances/instance1/snapshots/snapshot1"
+                }
+              }
+            },
+            "instance2": {
+              "route": "machines/machine1/versions/version1/instances/instance2",
+              "snapshots": {}
+            }
+          }
+        }
+      }
+    },
+    "machine2": {
+      "route": "machines/machine2",
+      "versions": {
+        "version1": {
+          "route": "machines/machine2/versions/version1",
+          "instances": {}
+        }
+      }
+    }
+  }
+}

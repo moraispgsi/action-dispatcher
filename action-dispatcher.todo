@@ -1,3 +1,10 @@
+Primary:
+ ☐ Add the is required attribute to the action-dispacher
  ☐ add fsm-engine-restful server
  ☐ remove fsm-engine-restful server
  ☐ automatically provide the services from the added fsm-engine added.
+ ☐ disable account creation without authorization.
+ ☐ create an account as default
+
+ Done:
+ ✔ Add the display name for the namespace in the action-dispatcher @done (17-07-12 10:00)

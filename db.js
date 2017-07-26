@@ -11,7 +11,7 @@ module.exports = app => {
       config.database,
       config.username,
       config.password,
-      config.params
+      config.params,
     );
     db = {
       sequelize,

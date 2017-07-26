@@ -1,15 +1,18 @@
+import logger from './logger.js';
+
 module.exports = {
-  database: 'ntask_test',
-  username: '',
-  password: '',
-  params: {
-    dialect: 'sqlite',
-    storage: 'testingDB.sqlite',
-    logging: false,
-    define: {
-      underscored: true,
+    database: 'database',
+    username: '',
+    password: '',
+    params: {
+        dialect: 'sqlite',
+        storage: 'database.sqlite',
+        logging: (sql) => {
+            logger.info(`[${new Date()}] ${sql}`);
+        },
+        underscored: true,
     },
-  },
-  jwtSecret: 'NTASK_TEST',
-  jwtSession: { session: false },
+    jwtSecret: 'Nta$K-AP1',
+    jwtSession: { session: false },
 };
+
