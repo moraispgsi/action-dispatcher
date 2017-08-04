@@ -1,0 +1,45 @@
+{"level":"info","message":"[Sun Jul 30 2017 21:32:14 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:32:14.747Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:32:14 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:32:14.761Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:32:17 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:32:17.602Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:32:17 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:32:17.607Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:32:54 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:32:54.655Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:32:54 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:32:54.660Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:32:56 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:32:56.707Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:32:56 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:32:56.710Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:32:57 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:32:57.722Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:32:57 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:32:57.727Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:33:29 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:33:29.317Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:33:29 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:33:29.319Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:34:52 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T20:34:52.788Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:34:52 +0000] \"POST /execute HTTP/1.1\" 401 -\n","timestamp":"2017-07-30T20:34:52.801Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:35:21 GMT+0100 (GMT Daylight Time)] Executing (default): INSERT INTO `Users` (`id`,`name`,`password`,`email`) VALUES (NULL,'John Connor5','$2a$10$V0Jt0Gu9vSdVeJJYe/ZMQuclypq5w2N1nUgZVcy5R3l51bX2DKNSa','john@connor.net6');","timestamp":"2017-07-30T20:35:21.544Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:35:21 +0000] \"POST /users HTTP/1.1\" 200 156\n","timestamp":"2017-07-30T20:35:21.559Z"}
+{"level":"info","message":"[Sun Jul 30 2017 21:36:14 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`email` = 'john@connor.net6';","timestamp":"2017-07-30T20:36:14.945Z"}
+{"level":"info","message":"::1 - - [30/Jul/2017:20:36:15 +0000] \"POST /token HTTP/1.1\" 200 111\n","timestamp":"2017-07-30T20:36:15.044Z"}
+{"level":"info","message":"[Sun Jul 30 2017 22:05:16 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T21:05:16.067Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Jul/2017:21:05:16 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-30T21:05:16.098Z"}
+{"level":"info","message":"[Sun Jul 30 2017 22:27:43 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-30T21:27:43.282Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [30/Jul/2017:21:27:43 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-30T21:27:43.291Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:31:27 +0000] \"GET / HTTP/1.1\" 200 41\n","timestamp":"2017-07-31T10:31:27.816Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:31:28 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150\n","timestamp":"2017-07-31T10:31:28.132Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:31:34 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:31:34.969Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:31:34 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-31T10:31:34.980Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:31:38 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:31:38.935Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:31:38 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-31T10:31:38.938Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:34:33 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:34:33.589Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:34:33 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-31T10:34:33.613Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:34:43 +0000] \"GET / HTTP/1.1\" 200 41\n","timestamp":"2017-07-31T10:34:43.520Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:43:29 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:43:29.238Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:44:32 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:44:32.637Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:46:25 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:46:25.634Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:47:09 +0000] \"POST /execute HTTP/1.1\" - -\n","timestamp":"2017-07-31T10:47:09.418Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:50:52 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:50:52.953Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:50:53 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-31T10:50:53.853Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:53:07 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:53:07.900Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:53:08 +0000] \"POST /execute HTTP/1.1\" 400 82\n","timestamp":"2017-07-31T10:53:08.443Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:55:42 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`id` = 1;","timestamp":"2017-07-31T10:55:42.064Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:55:42 +0000] \"POST /execute HTTP/1.1\" 200 88\n","timestamp":"2017-07-31T10:55:42.685Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:58:25 +0000] \"GET / HTTP/1.1\" 200 41\n","timestamp":"2017-07-31T10:58:25.041Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:58:25 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150\n","timestamp":"2017-07-31T10:58:25.595Z"}
+{"level":"info","message":"[Mon Jul 31 2017 11:59:07 GMT+0100 (GMT Daylight Time)] Executing (default): SELECT `id`, `name`, `password`, `email` FROM `Users` AS `Users` WHERE `Users`.`email` = 'john@connor.net6';","timestamp":"2017-07-31T10:59:07.014Z"}
+{"level":"info","message":"::1 - - [31/Jul/2017:10:59:07 +0000] \"POST /token HTTP/1.1\" 200 111\n","timestamp":"2017-07-31T10:59:07.119Z"}
