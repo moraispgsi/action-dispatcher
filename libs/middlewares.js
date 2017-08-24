@@ -1,10 +1,10 @@
-import bodyParser from 'body-parser';
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import helmet from 'helmet';
-import logger from './logger.js';
-import dispatcher from './dispatcher/dispatcher.js';
+let bodyParser = require('body-parser');
+let express = require('express');
+let morgan = require('morgan');
+let cors = require('cors');
+let helmet = require('helmet');
+let logger = require('./logger.js');
+let dispatcher = require('./dispatcher/dispatcher');
 
 module.exports = app => {
   app.set('port', process.env.PORT || 3002);
@@ -19,7 +19,6 @@ module.exports = app => {
   app.use(helmet());
   app.use(cors());
   app.use(bodyParser.json());
-  app.use(app.auth.initialize());
   app.use((req, res, next) => {
     delete req.body.id;
     next();

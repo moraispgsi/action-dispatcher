@@ -1,9 +1,8 @@
-import bootProduction from './boot.production';
-import bootTest from './boot.test';
-import bootDevelopment from './boot.development';
-import bootHeroku from './boot.heroku';
+let bootProduction = require('./boot.production');
+let bootDevelopment = require('./boot.development');
+let bootTest = require('./boot.test');
 
-import debugInit from 'debug';
+let debugInit = require('debug');
 const debug = debugInit('boot');
 
 
@@ -14,11 +13,7 @@ module.exports = app => {
   });
   switch (process.env.NODE_ENV) {
     case 'production':
-      if (process.env.PLATFORM === 'heroku') {
-        bootHeroku(app);
-      } else {
-        bootProduction(app);
-      }
+      bootProduction(app);
       break;
     case 'development':
       bootDevelopment(app);

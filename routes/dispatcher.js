@@ -4,7 +4,7 @@
 
 module.exports = app => {
 
-    app.post('/execute', app.auth.authenticate(), function (req, res) {
+    app.post('/execute', function (req, res) {
         try {
             app.dispatcher.dispatch(req.body.namespace, req.body.action, req.body.arguments, res);
         } catch (err) {
@@ -19,7 +19,7 @@ module.exports = app => {
         }
     });
 
-    app.get('/namespaces', app.auth.authenticate(), function (req, res) {
+    app.get('/namespaces', function (req, res) {
         try {
             let namespaces = app.dispatcher.getNamespaces();
             res.json({
@@ -37,7 +37,7 @@ module.exports = app => {
         }
     });
 
-    app.get('/services', app.auth.authenticate(), function (req, res) {
+    app.get('/services', function (req, res) {
         try {
             let services = app.dispatcher.getServices();
             res.json(services);
@@ -53,7 +53,7 @@ module.exports = app => {
         }
     });
 
-    app.get('/subservices', app.auth.authenticate(), function (req, res) {
+    app.get('/subservices', function (req, res) {
         try {
             let ns = req.query.namespace;
             let services = app.dispatcher.getServices();
